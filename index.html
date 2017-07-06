@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星巴娱乐</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/webStyle.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body data-theme="normal">
+    		<div class="container" id="PageIndex" data-login="true">
+	  			<div class="flex-tabbar">
+	  				<div class="flex-tabbar-item" onclick="javascript:location.href='index.html';">
+	  					<a href="index.html"><img src="img/ui-logo.png" class="main-logo"/></a>
+	  				</div>
+	  				<div class="flex-tabbar-item flex-right-item">
+
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="notification-bar">
+	  				杨联刚中了1元
+	  			</div>
+	  			
+	  			<div class="segment-menu">
+
+  				</div>
+  		
+  				<div class="main-content">
+  						<div class="row zero-margin">
+  							<div class="col-lg-1 col-md-2 col-sm-12 zero-padding" style="z-index: 10;"> 
+  								<ul class="tab-category">
+									<li class="active">3分PK</li>
+									<li>1分PK</li>
+								</ul>
+  							</div>
+  							<div class="col-lg-11 col-md-10 col-sm-12 zero-padding" style="z-index: 9;"> 
+  								<div class="tab-section radius-8">
+  									<!--
+                                      	作者：225733202@qq.com
+                                      	时间：2017-05-07
+                                      	描述：倒计时面板
+                                      -->
+  									<div class="ui-panel ui-panel-timedown">
+  										<div class="ui-panel-title">第<b> 119</b> 期  开奖倒计时:</div>
+  										<div class="ui-panel-content">23:59:59</div>
+  									</div>
+  									<!--
+                                      	作者：225733202@qq.com
+                                      	时间：2017-05-07
+                                      	描述：比赛实况入口
+                    -->
+                    <a href="game/index3.html" id="gameLink"><img src="img/ui-play-game.png"></a>
+                    <!--
+                    	作者：225733202@qq.com
+                    	时间：2017-05-07
+                    	描述：开奖结果面板
+                    -->  
+                    <div class="ui-panel">
+  										<div class="ui-panel-title">第<span id="LastRaceNo1">118</span>期开奖号码:</div>
+  										<div class="ui-panel-content " id="LastRaceWinNumbers">
+  											<span class="number">1</span>
+  											<span class="number">5</span>
+  											<span class="number">9</span>
+  											<span class="number">2</span>
+  											<span class="number">3</span>
+  											<span class="number">8</span>
+  											<span class="number">7</span>
+  											<span class="number">10</span>
+  											<span class="number">4</span>
+  											<span class="number">6</span>
+  										</div>
+  									</div>
+  									
+  								</div>
+  							</div>
+  						</div>
+  						
+  						<div class="row margin-top-10">
+  							<div class="col-lg-9 col-md-12 col-sm-12">
+  								<div class="ui-tool-bar" data-theme = "drak" id="OrderType">
+  									<button class="active">定胆</button>
+									<button>冠亚</button>
+  									<button>精准前三</button>
+  									<button>精准前四</button>
+  								</div>
+  								
+  								<div class="ball-rows" id="ball-rows">
+  									<!--
+                                      	作者：225733202@qq.com
+                                      	时间：2017-05-07
+                                      	描述：开奖行 begin
+                                      -->
+  									<div class="ball-row">
+  										<div class="ball-row-before">冠军</div>
+  										<div class="ball-row-content">
+  												<label class="ui-ball ui-ball-1 active"></label>
+
+  												<label class="ui-ball ui-ball-2" ></label>
+
+  												<label class="ui-ball ui-ball-3 active" ></label>
+
+  												<label class="ui-ball ui-ball-4"></label>
+
+  												<label class="ui-ball ui-ball-5"></label>
+
+  												<label class="ui-ball ui-ball-6" ></label>
+
+  												<label class="ui-ball ui-ball-7" ></label>
+  												
+  												<label class="ui-ball ui-ball-8 active" ></label>
+
+  												<label class="ui-ball ui-ball-9" ></label>
+
+  												<label class="ui-ball ui-ball-10"></label>
+  										</div>
+  										<div class="ball-row-after">
+  												<input type="radio" name="ballOption-1" value="0" id="option-1"/>
+  												<label for="option-1">大</label>
+  												
+  												<input type="radio" name="ballOption-1" value="0" id="option-2"/>
+  												<label for="option-2">小</label>
+  												
+  												<input type="radio" name="ballOption-1" value="0" id="option-3"/>
+  												<label for="option-3">全</label>
+  												
+  												<input type="radio" name="ballOption-1" value="0" id="option-4"/>
+  												<label for="option-4">单</label>
+  												
+  												<input type="radio" name="ballOption-1" value="0" id="option-5"/>
+  												<label for="option-5">双</label>
+  												
+  												<input type="radio" name="ballOption-1" value="0" id="option-6"/>
+  												<label for="option-6">清</label>
+  										</div>
+  									</div>
+  									<!--
+                                      	作者：225733202@qq.com
+                                      	时间：2017-05-07
+                                      	描述：开奖行 end
+                                      -->
+
+  								
+  								</div>
+  								<!-- ui-table begin-->
+  								<div class="ui-table" data-role = "buy-list">
+  									<ul class="ui-table-header">
+  										<li class="ui-table-cell">方式</li>
+  										<li class="ui-table-cell" name="betSelectedNumbers">选号</li>
+  										<li class="ui-table-cell">倍数</li>
+  										<li class="ui-table-cell">金额</li>
+  										<li class="ui-table-cell">模式</li>
+  										<li class="ui-table-cell">&nbsp; &nbsp;</li>
+  									</ul>
+  									<div class="ui-table-rows" id="bet-rows">
+
+  									</div>
+									<div id="ui-table-footer">
+  									<ul class="ui-table-footer">
+										<!-- 非定胆模式 显示-->
+										<li style="display: none">
+											 <div class="ui-number-input"> 
+											 <div class="ui-number-input-before">-</div> 
+											 <div class="ui-number-input-content"><input name="betBuyMultiple" type="text" value="1" readonly="readonly" /></div> 
+											 <div class="ui-number-input-after">+</div> 
+											 </div> 
+										</li>
+										<li style="display: none">
+											 <div class="btn-group"> 
+											 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+												 <label data-model="2" name="betModel">元模式</label>
+												 <span class="caret"></span> 
+												 </button> 
+											 <ul class="dropdown-menu"> 
+												 <li><a href="javascript:Do_BetModelChanged(2);">元模式</a></li>
+												 <li role="separator" class="divider"></li> 
+												 <li><a href="javascript:Do_BetModelChanged(0.2);">角模式</a></li>
+												 <li role="separator" class="divider"></li> 
+												 <li><a href="javascript:Do_BetModelChanged(0.02);">分模式</a></li>
+												 </ul> 
+											 </div> 
+											
+										</li>
+  										<li>购买注数: <span id="bet-count">0</span></li>
+  										<li>总金额: <span id="bet-total">0</span></li>
+  									</ul>
+  									<button  class="ui-button-red" onclick="Do_BetOrderAdd()">立即下注</button>
+									</div>
+  								</div>
+  								<!-- ui-table end-->
+  								
+  							</div>
+  							<div class="col-lg-3 col-md-12 col-sm-12">
+  								<div class="ui-panel ui-panel-win">
+  										<div class="ui-panel-title">历史开奖数据</div>
+  										<div class="ui-panel-content ">
+  											<ul id="LastRaceWinnerList">
+  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
+  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
+  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
+  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
+  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
+  											</ul>
+  										</div>
+  									</div>
+  								<!--
+  								<ul class="ui-button-group">
+  									<li><a href="#" data-toggle="modal" data-target="#myModal" data-whatever="Course">新手教程</a></li>
+  									<li><a href="#" data-toggle="modal" data-target="#myModal" data-whatever="Issue">常见问题</a></li>
+  									<li><a href="#" data-toggle="modal" data-target="#myModal" data-whatever="Feedback">意见反馈</a></li>
+  									<li><a href="#">在线客服</a></li>
+  								</ul>
+  								-->
+  							</div>
+  						</div>
+  					
+  				</div>
+    		</div>
+	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/Jquery-3.1.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="js/jq.resize.js"></script><script src="js/Request.js"></script><script src="js/webAppView.js"></script><script src="js/webAppModel.js"></script><script src="js/webApp.js"></script><script src="layer/layer.js"></script>
+
+  </body>
+</html>

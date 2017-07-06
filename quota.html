@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>仓位资金</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/webStyle.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body data-theme="normal">
+    		<div class="container" id="PageQuota" data-login="true">
+	  			<div class="flex-tabbar">
+
+	  				<div class="flex-tabbar-item" onclick="javascript:location.href='index.html';">
+	  					<a href="index.html"><img src="img/ui-logo.png" class="main-logo"/></a>
+	  				</div>
+	  				<div class="flex-tabbar-item flex-right-item">
+	  					<a href="myself.html"> <img src="img/icon-user.png"> 玩家：<span id="NickName">edward</span></a>
+	  					<a href="newscenter.html"> <img src="img/icon-sms.png"> 消息：<span id="NewsCount">0</span></a>
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="notification-bar">
+	  				张三中奖10000元
+	  			</div>
+	  			  		
+  				<div class="main-content">						
+  						<div class="row margin-top-10"> 							
+  							<div class="col-lg-2 col-md-3 col-sm-12" id="menuRect">
+  									<ul class="menu-list">
+  										<li class="active"><a href="profile.html">个人资料</a></li>
+  										<li><a href="#">银行卡</a></li>
+  										<li><a href="#">仓位资金</a></li>
+  									</ul>
+  									<div class="margin-top-90"></div>
+  									<ul class="menu-list">
+  										<li><a href="teamMember.html">团队成员</a></li>
+  										<li><a href="pricesDetail.html">仓位明细</a></li>
+  										<li><a href="#">充值记录</a></li>
+  										<li><a href="buyRecord.html">购买记录</a></li>
+  										<li><a href="#">体现记录</a></li>
+  										<li><a href="#">意见反馈</a></li>
+  										<li><a href="#">在线客服</a></li>
+  										<li><a href="newsCenter.html">消息中心</a></li>
+  									</ul>
+  							</div>
+  							<div class="col-lg-10 col-md-9 col-sm-12">
+  								<div class="content-drak">
+									
+										<div class="contect-item">
+												
+													
+														<div>仓位总资金:</div>
+														<div class="red-font">
+															<span>￥</span>
+															<span id="quota"> 185.00</span>
+														</div>
+												
+													
+													<div class="ui-button-group-h">
+														<button data-theme='yellow' onclick="javascript:self.location='pricesDetail.html';"> 明细  <img src="img/icon-info.png" /></button>
+														<button> 充值</button>
+														<button data-toggle="modal" data-target="#myModal" data-whatever="DrawCash"> 提现</button>
+													</div>
+											
+											
+											
+										</div>
+										
+  								</div>
+  								
+  							</div>
+  						</div>
+  					
+  				</div>
+    		</div>
+	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/Jquery-3.1.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script src="js/jq.resize.js"></script><script src="js/Request.js"></script><script src="js/webAppView.js"></script><script src="js/webAppModel.js"></script><script src="js/webApp.js"></script><script src="layer/layer.js"></script>
+  </body>
+</html>

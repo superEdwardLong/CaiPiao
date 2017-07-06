@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>玩家登录</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/webStyle.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body data-theme="reg">
+    		<div class="container" id="PageLogin">
+	  				<form class="login-form">
+	  					<div class="login-form-header" onclick="javascript:location.href='index.html">
+	  						<img src="img/ui-logo-middle.png" /> WWW.YDS.COM
+	  					</div>
+	  					<table width="100%">
+	  						<tr>
+	  							<td>
+	  								<div class="ui-input">
+	  									<div class="ui-input-icon ui-icon-user"></div>
+	  									<div class="ui-input-content">
+	  										<input type="text" value="test1" placeholder="用户名" name="userName"/>
+	  									</div>
+	  									
+	  								</div>
+	  							</td>
+	  						</tr>
+	  						<tr>
+	  							<td>
+	  								<div class="ui-input">
+	  									<div class="ui-input-icon ui-icon-lock"></div>
+	  									<div class="ui-input-content">
+	  										<input type="password" value="123456" placeholder="密码" name="password"/>
+	  									</div>
+	  									
+	  								</div>
+	  								
+	  							</td>
+	  						</tr>
+							<tr>
+								<td>
+									<div class="ui-err"></div>
+								</td>
+							</tr>
+	  						<tr>
+	  							<td>
+	  								<div class="link-group">
+	  									<a href="reg.html">注册</a>
+	  									<a href="forget.html">忘记密码</a>
+	  								</div>
+	  							</td>
+	  						</tr>
+	  						<tr>
+	  							<td>
+	  								<input type="button" class="ui-button-login" id="btn-submit" />
+	  							</td>
+	  						</tr>
+	  					</table>
+	  				</form>
+  			</div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/Jquery-3.1.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="js/jq.resize.js"></script>
+	<script src="js/Request.js"></script>
+	<script src="js/webAppView.js"></script>
+	<script src="js/webAppModel.js"></script>
+	<script src="js/webApp.js"></script><script src="layer/layer.js"></script>
+  </body>
+</html>

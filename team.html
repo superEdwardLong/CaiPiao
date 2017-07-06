@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星巴娱乐  团队</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/webStyle.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	  <link href="date-picker/foundation.min.css" rel="stylesheet">
+	  <link href="date-picker/foundation-datepicker.css" rel="stylesheet">
+  </head>
+  <body data-theme="normal">
+    		<div class="container" id="PageTeam">
+	  			<div class="flex-tabbar">
+
+	  				<div class="flex-tabbar-item" onclick="javascript:location.href='index.html';">
+	  					<a href="index.html"><img src="img/ui-logo.png" class="main-logo"/></a>
+	  				</div>
+	  				<div class="flex-tabbar-item flex-right-item">
+	  					<a href="profile.html"> <img src="img/icon-user.png"> 玩家：<span id="NickName">edward</span></a>
+	  					<a href="newscenter.html"> <img src="img/icon-sms.png"> 消息：<span id="NewsCount">0</span></a>
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="notification-bar">
+	  				张三中奖10000元
+	  			</div>
+
+				<div class="segment-menu">
+					<div class="segment-menu-item ">
+						<a href="index.html"><img src="img/icon-pk-selected.png" />首页</a>
+					</div>
+					<div class="segment-menu-item">
+						<a href="quota.html"><img src="img/icon-record.png" /> 充值提现</a>
+					</div>
+					<div class="segment-menu-item">
+						<a href="LotteryRecord.html"><img src="img/icon-record.png" /> 开奖记录</a>
+					</div>
+					<div class="segment-menu-item">
+						<a href="BuyRecord.html"><img src="img/icon-buy-record.png" /> 购买记录</a>
+					</div>
+					<div class="segment-menu-item active">
+						<a href="Team.html"><img src="img/icon-team.png" /> 代理注册</a>
+					</div>
+					<div class="segment-menu-item">
+						<a  href="#" data-toggle="modal" data-target="#myModal" data-whatever="Course">
+							<img src="img/icon-team.png" /> 新手教程
+						</a>
+					</div>
+					<div class="segment-menu-item">
+						<a  href="#" data-toggle="modal" data-target="#myModal" data-whatever="Issue"><img src="img/icon-team.png" /> 常见问题</a>
+					</div>
+				</div>
+  		
+  				<div class="main-content">
+  						<div class="row">
+  							<div class="col-lg-3 col-md-3 col-sm-12">
+  								
+  								<ul class="info-list">
+  									<li>用户:<b id="SelfName">联刚发大财</b></li>
+  									<li>资金:<b id="SelfBalance" class="gold-font">199.89</b>元</li>
+  									<li>返点:<b id="CommissionAmount" class="gold-font">129.00</b>元</li>
+  								</ul>
+  								
+  								<ul class="info-list">
+  									<li>团队人员:<b id="CountMemberAll">178</b></li>
+									<li>新入队员:<b id="CountMemberNew">178</b></li>
+									<!--
+  									<li>会员总数:<b>14人</b></li>
+									-->
+  									<li>投注金额:<b id="TeamOrderAmount">1809.83</b> <span id="BetCountDetail" class="mark-red">明细</span></li>
+  									<li>中奖金额:<b id="TeamWonAmount">130.50</b></li>
+  									<li>提现金额:<b id="TeamWithdrawAmount">129.30</b> <span id="DrawDetail" class="mark-red">明细</span></li>
+  									<li>充值金额:<b id="TeamRechargeAmount">140.00</b> <span id="ReChangeDetail" class="mark-red">明细</span></li>
+  									
+  								</ul>
+  							
+  							</div>
+  							<div class="col-lg-9 col-md-9 col-sm-12">
+  								<div class="ui-tool-bar" data-theme = "drak">
+  									<div class="ui-input">
+  										<div class="ui-input-content">
+  											<input type="text" value="" placeholder="yyyy-mm-dd" id="date-picker"/>
+  										</div>
+  										<span class="ui-input-icon ui-icon-calendar"></span>
+  									</div>
+  									<span style="color: #999; padding: 0 8px;"> 至</span>
+  									<div class="ui-input">
+  										<div class="ui-input-content">
+  											<input type="text" value="" placeholder="yyyy-mm-dd" id="date-picker2"/>
+  										</div>
+  										<span class="ui-input-icon ui-icon-calendar"></span>
+  									</div>
+  									<button class="ui-button-red gold" id="btn-search">搜索</button>
+
+  								</div>
+  								<div id="TeamDataView" class="content-drak margin-top-20 padding-10">
+								</div>
+  								
+  							</div>
+  						</div>
+  				</div>
+    		</div>
+	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/Jquery-3.1.1.js"></script>
+			<script src="date-picker/foundation-datepicker.js"></script>
+			<script src="date-picker/foundation-datepicker.zh-CN.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="js/jq.resize.js"></script><script src="js/Request.js"></script><script src="js/webAppView.js"></script><script src="js/webAppModel.js"></script><script src="js/webApp.js"></script><script src="layer/layer.js"></script>
+  </body>
+</html>
