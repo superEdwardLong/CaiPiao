@@ -19,65 +19,49 @@
   </head>
   <body data-theme="reg">
     		<div class="container" id="PageForget">
-	  				<form class="reg-form" id="myForm">
-	  					<div class="reg-form-header" onclick="javascript:location.href='index.html">
-	  							<button class="button-close"></button>
+	  				<form class="reg-form" id="myForm" action="#">
+	  					<div class="reg-form-header" >
+	  							<span class="button-close"></span>
 	  					</div>
 	  					<div class="row">
-	  						<div class="col-lg-7 col-md-6 col-sm-12" >
-	  							<table width="90%" align="center">
-	  								<tr>
-	  									<td width="30%">用户名</td>
-	  									<td><input type="text" value="" placeholder="用户名" name="userName"/></td>
-	  								</tr>
-	  						
-	  								<tr>
-	  									<td>密保问题</td>
-	  									<td>
-	  										<div class="btn-group">
-													  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													    Action <span class="caret"></span>
-													  </button>
-													  <input type="hidden" value="" name="questionId"/>
-													  <ul class="dropdown-menu">
-													    <li><a href="#">Action</a></li>
-													    <li><a href="#">Another action</a></li>
-													    <li><a href="#">Something else here</a></li>
-													    <li role="separator" class="divider"></li>
-													    <li><a href="#">Separated link</a></li>
-													  </ul>
-													</div>
-	  									</td>
-	  								</tr>
-	  								<tr>
-	  									<td>密保答案</td>
-	  									<td><input type="text" value="" placeholder="密保答案" name="answer"/></td>
-	  								</tr>
-	  								
-	  								<tr>
-	  									<td>新密码</td>
-	  									<td><input type="password" value="" placeholder="密码" name="newPassword"/></td>
-	  								</tr>
-	  							</table>
-	  							
-	  							
-	  							
-	  						</div>
-	  						<div class="col-lg-5 col-md-6 col-sm-12">
-	  							<div class="ui-panel ui-panel-reg">
-	  								<div class="ui-panel-title">
-	  									注册声明
-	  								</div>
-	  								<div class="ui-panel-content">
-	  									<ul>
-	  										<li>0000fd0afd0adf0a</li>
-	  									</ul>
-	  								</div>
-	  							</div>
-	  						</div>
+							<table width="90%" align="center">
+								<tr>
+									<td width="30%">用户名</td>
+									<td><input type="text" value="" placeholder="用户名" name="userName"/></td>
+								</tr>
+
+								<tr>
+									<td>密保问题</td>
+									<td>
+										<div class="btn-group">
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												请选择密保问题 <span class="caret"></span>
+											</button>
+											<input type="hidden" value="" name="questionId"/>
+											<ul class="dropdown-menu">
+												<li><a href="#">Action</a></li>
+												<li><a href="#">Another action</a></li>
+												<li><a href="#">Something else here</a></li>
+												<li role="separator" class="divider"></li>
+												<li><a href="#">Separated link</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>密保答案</td>
+									<td><input type="text" value="" placeholder="密保答案" name="answer"/></td>
+								</tr>
+
+								<tr>
+									<td>新密码</td>
+									<td><input type="password" value="" placeholder="密码" name="newPassword"/></td>
+								</tr>
+							</table>
 	  					</div>
+						<button class="ui-button-reg" id="btn_forget"></button>
 	  				</form>
-	  				<button class="ui-button-reg" id="btn_forget"></button>
+
 	  				
   			</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

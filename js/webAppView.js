@@ -2,12 +2,15 @@
  * Created by BOT01 on 2017/5/27.
  */
 function MakeHtmlHeaderMenuItems(_tokendb){
-    var _link = '<a href="#" data-toggle="modal" data-target="#myModal" data-whatever="Feedback">意见反馈</a>';
+    var _QQ = "225733202";
+    var _link = "";
+    _link +='<a href="Index.html">网站首页</a>';
+    _link += '<a href="#" data-toggle="modal" data-target="#myModal" data-whatever="Feedback">意见反馈</a>';
     _link +='<a href="Market.html">开放市场</a>';
-    _link +='<a href="Profile.html">个人中心</a>';
+    _link +='<a href="profile.html">个人中心</a>';
     _link +='<a href="Newscenter.html?Category=1">系统公告</a>';
-    _link +='<a href="#">在线客服</a>';
-    _link +='<a href="#">联系我们</a>';
+    _link +='<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin='+_QQ+'&site=在线客服&menu=yes">在线客服</a>';
+    _link +='<a href="Contact.html">联系我们</a>';
     if(_tokendb != null){
         _link +='<a href="#"><img src="img/icon-user.png">玩家：<span id="NickName">'+_tokendb.NickName+'</span></a>';
         _link +='<a href="login.html?act=out">退出</a>';
@@ -17,7 +20,7 @@ function MakeHtmlHeaderMenuItems(_tokendb){
     return _link;
 }
 function MakeHtmlSegmentMenuItems(){
-    var _html = "";
+    var _html = "<div class='segment-menu-inner'>";
     _html +='<div class="segment-menu-item ">';
     _html +='<a href="index.html"><img src="img/icon-pk.png" />首页</a>';
     _html +='</div>';
@@ -31,7 +34,7 @@ function MakeHtmlSegmentMenuItems(){
     _html +='<a href="BuyRecord.html"><img src="img/icon-buy-record.png" /> 购买记录</a>';
     _html +='</div>';
     _html +='<div class="segment-menu-item ">';
-    _html +='<a href="Team.html"><img src="img/icon-reg.png" /> 代理注册</a>';
+    _html +='<a href="teamMember.html?act=reg"><img src="img/icon-reg.png" /> 代理注册</a>';
     _html +='</div>';
     _html +='<div class="segment-menu-item">';
     _html +='<a  href="#" data-toggle="modal" data-target="#myModal" data-whatever="Course">';
@@ -41,7 +44,32 @@ function MakeHtmlSegmentMenuItems(){
     _html +='<div class="segment-menu-item">';
     _html +='<a  href="#" data-toggle="modal" data-target="#myModal" data-whatever="Issue"><img src="img/icon-feedback.png" /> 常见问题</a>';
     _html +='</div>';
+    _html +='</div>';
     return _html;
+}
+
+function MakeHtmlUserCenterMenuList(){
+    var html = "";
+    html += '<ul class="menu-list">';
+    html += '<li ><a href="profile.html">个人资料</a></li>';
+    html += '<li><a href="bankCardList.html">银行卡</a></li>';
+    html += '<li><a href="quota.html">仓位资金</a></li>';
+    html += '<li><a href="transferAccounts.html">转账</a></li>';
+    html += '</ul>';
+    html += '<div class="margin-top-90"></div>';
+    html += '<ul class="menu-list">';
+    html += '<li ><a href="Team.html">我的团队</a></li>';
+    html += '<li><a href="teamMember.html">团队成员</a></li>';
+    html += '<li><a href="#" data-toggle="modal" data-target="#myModal" data-whatever="AddTeamMember">添加队员</a></li>';
+    html += '<li><a href="pricesDetail.html">仓位明细</a></li>';
+    html += '<li><a href="rechargeRecord.html">充值记录</a></li>';
+    //html += '<li><a href="buyRecord.html">购买记录</a></li>';
+    html += '<li><a href="drawCashRecord.html">提现记录</a></li>';
+    //html += '<li><a href="#" data-toggle="modal" data-target="#myModal" data-whatever="Feedback">意见反馈</a></li>';
+    //html += '<li><a href="#">在线客服</a></li>';
+    //html += '<li><a href="newsCenter.html">消息中心</a></li>';
+    html += '</ul>';
+    return html;
 }
 function MakeHtmlPageNumbers(page,pageCount,isUpdate){
     if(isUpdate){
@@ -153,7 +181,7 @@ function MakeHtmlBetItem(OrderType,BetIndex){
         html +='<div class="ui-table-cell">';
         html +='<div class="ui-number-input">';
         html +='<div class="ui-number-input-before">-</div>';
-        html +='<div class="ui-number-input-content"><input name="betBuyMultiple" type="text" value="1" readonly="readonly" /></div>';
+        html +='<div class="ui-number-input-content"><input name="betBuyMultiple" type="text" value="1" onkeyup="Do_CheckBetBuyMultiple(this)"/></div>';
         html +='<div class="ui-number-input-after">+</div>';
         html +='</div>';
         html +='</div>';
@@ -183,28 +211,7 @@ function MakeHtmlBetItem(OrderType,BetIndex){
     html +='</div>';
     return html;
 }
-function MakeHtmlUserCenterMenuList(){
-    var html = "";
-    html += '<ul class="menu-list">';
-    html += '<li ><a href="profile.html">个人资料</a></li>';
-    html += '<li><a href="bankCardList.html">银行卡</a></li>';
-    html += '<li><a href="quota.html">仓位资金</a></li>';
-    html += '<li><a href="transferAccounts.html">转账</a></li>';
-    html += '</ul>';
-    html += '<div class="margin-top-90"></div>';
-    html += '<ul class="menu-list">';
-    html += '<li><a href="teamMember.html">团队成员</a></li>';
-    html += '<li><a href="#" data-toggle="modal" data-target="#myModal" data-whatever="AddTeamMember">添加队员</a></li>';
-    html += '<li><a href="pricesDetail.html">仓位明细</a></li>';
-    html += '<li><a href="rechargeRecord.html">充值记录</a></li>';
-    //html += '<li><a href="buyRecord.html">购买记录</a></li>';
-    html += '<li><a href="drawCashRecord.html">提现记录</a></li>';
-    //html += '<li><a href="#" data-toggle="modal" data-target="#myModal" data-whatever="Feedback">意见反馈</a></li>';
-    //html += '<li><a href="#">在线客服</a></li>';
-    //html += '<li><a href="newsCenter.html">消息中心</a></li>';
-    html += '</ul>';
-    return html;
-}
+
 function MakeHtmlNewsItem(db){
     var html="";
     html +='<li>';
@@ -257,7 +264,7 @@ function MakeHtmlModal(){
     html += '<div class="modal-body-inner"></div>'
     html += '</div>';
     html += '<div class="modal-footer">';
-    html += '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="javascript:Do_SaveWithModalType()">确定</button>';
+    html += '<button type="button" class="btn btn-danger"  onclick="javascript:Do_SaveWithModalType()">确定</button>';
     html += '<h4 class="modal-description" id="myModalDescription">Modal title</h4>';
     html += '</div>';
     html += '</div>';
@@ -272,7 +279,7 @@ function MakeHtmlModalAddTeamMember(){
     _table += "<li><label>登录帐号</label> <span><input type='text' name='userName' /></span> </li>";
     _table += "<li><label>登录密码</label> <span><input type='password' name='password' /></span> </li>";
     _table += "<li><label>昵称</label> <span><input type='text' name='nickName' /></span> </li>";
-    _table += "<li><label>提成比例</label> <span><input type='text' name='commissionPercentage' /></span> </li>";
+    _table += "<li><label>返点比例</label> <span><input type='text' name='commissionPercentage' onkeyup='Do_CheckCommissionPercent(this)'/></span> </li>";
     _table += "</ul></form>";
 
     var _option = {

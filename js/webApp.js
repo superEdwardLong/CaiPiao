@@ -110,7 +110,7 @@ function PageTeamInit(){
 
 /*注册，忘记密码，登录*/
 function PageRegInit(){
-
+	Do_GetQuestionList();
 }
 function PageForgetInit(){
 	Do_GetQuestionList();
@@ -124,6 +124,8 @@ function PageLoginInit(){
 	}
 
 	$("#btn-submit").on('click',function(e){
+
+
 		var _data = $(".login-form").serializeJSON();
 		$(".ui-err").empty();
 		if(_data.userName.length == 0){
@@ -144,18 +146,21 @@ function PageLoginInit(){
 			var USER = new NSUser();
 			USER.setUserToken(JSON.stringify(result));
 
-			var URL = new NSURL();
-			URL.go();
+			//var URL = new NSURL();
+			//URL.go();
+			self.location = "Index.html";
 		}
 		_request.doRequest()
 
 	});
 }
 
+function PageContactInit(){}
 function PageMarketInit(){
 
 }
 function PageMainQuotaInit(){
+	$(".segment-menu").html(MakeHtmlSegmentMenuItems());
 	Do_SetDocumentTitleWithHref($(".segment-menu"));
 	Do_GetQuota();
 }
@@ -169,73 +174,73 @@ function PageTransferAccountsInit(){
 /*用户中心 */
 function PageProfileInit(){
 	Do_SetDocumentTitleWithHref();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
-
 	Do_GetSelfInfo();
 }
 
 function PageBankCardListInit(){
 	Do_SetDocumentTitleWithHref();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
 	Do_BankCardList();
-	
 }
 
 function PagePriceDetailInit(){
 	Do_SetDocumentTitleWithHref();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
+
 	Do_GetPricesDetail();
 	Do_GetQuota();
-	$("#date-picker").fdatepicker();
+
+	$("#date-picker1").fdatepicker();
+	$("#date-picker2").fdatepicker();
 }
 
 function PageQuotaInit(){
 	Do_SetDocumentTitleWithHref();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
 	Do_GetQuota();
-
 }
 
 function PageRechargeRecordInit(){
 	Do_SetDocumentTitleWithHref();
 	Do_GetRechargeRecord();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
-	$("#date-picker").fdatepicker();
+
+	$("#date-picker1").fdatepicker();
+	$("#date-picker2").fdatepicker();
 }
 
 function PageDrawCashRecordInit(){
 	Do_SetDocumentTitleWithHref();
 	Do_GetDrawCashRecord();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
-	$("#date-picker").fdatepicker();
+
+	$("#date-picker1").fdatepicker();
+	$("#date-picker2").fdatepicker();
 }
 
 function PageTeamMemberInit(){
 	Do_SetDocumentTitleWithHref();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
 	Ev_TeamMember();
 	Do_GetTeamMemberList();
+	if(GetURLParam("act") == "reg"){
+		setTimeout(function(){
+			$('a[data-whatever="AddTeamMember"]').trigger("click");
+		},1000);
+
+	}
 }
 
 function PageNewsInit(){
 	Do_SetDocumentTitleWithHref();
 	$(".menu-list:last li:last").addClass("active");
 	Do_GetMessage();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
+
 }
 
 function PageNewsCenterInit(){
-	Do_SetDocumentTitleWithHref();
-	Do_GetMessageList();
+	var _NewsCategory = GetURLParam("Category");
+	if(_NewsCategory == null){
+		Do_SetDocumentTitleWithHref();
+	}else{
+		$("#menuRect").next().attr("class","col-lg-12 col-md-2 col-sm-12");
+		$("#menuRect").remove();
+	}
+	Do_GetMessageList({newsType:1});
 	Ev_Message();
-	//$("body").append(MakeHtmlModal());
-	//Ev_Modal();
+
 }

@@ -53,7 +53,7 @@
                                       -->
   									<div class="ui-panel ui-panel-timedown">
   										<div class="ui-panel-title">第<b> 119</b> 期  开奖倒计时:</div>
-  										<div class="ui-panel-content">23:59:59</div>
+  										<div class="ui-panel-content">00:00:00</div>
   									</div>
   									<!--
                                       	作者：225733202@qq.com
@@ -171,7 +171,7 @@
 										<li style="display: none">
 											 <div class="ui-number-input"> 
 											 <div class="ui-number-input-before">-</div> 
-											 <div class="ui-number-input-content"><input name="betBuyMultiple" type="text" value="1" readonly="readonly" /></div> 
+											 <div class="ui-number-input-content"><input name="betBuyMultiple" type="text" value="1"  onkeyup="Do_CheckBetBuyMultiple(this);"/></div>
 											 <div class="ui-number-input-after">+</div> 
 											 </div> 
 										</li>
@@ -200,17 +200,15 @@
   								<!-- ui-table end-->
   								
   							</div>
-  							<div class="col-lg-3 col-md-12 col-sm-12">
+  							<div class="col-lg-3 col-md-12 col-sm-12" style="padding-left: 0">
   								<div class="ui-panel ui-panel-win">
-  										<div class="ui-panel-title">历史开奖数据</div>
   										<div class="ui-panel-content ">
-  											<ul id="LastRaceWinnerList">
-  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
-  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
-  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
-  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
-  												<li><span>联刚...</span> <span> 中奖</span>   <span> 100.00</span></li>
-  											</ul>
+  											<table class="goldline-table">
+												<thead>
+													<tr><td>期数</td><td>中奖号码</td></tr>
+												</thead>
+												<tbody id="LastRaceWinnerList"></tbody>
+  											</table>
   										</div>
   									</div>
   								<!--

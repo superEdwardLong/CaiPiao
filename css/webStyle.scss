@@ -150,8 +150,8 @@ body[data-theme="reg"]{
 	
 }
 .main-logo{
-        margin-bottom: -10rem; position: relative; z-index: -1;
-    }
+         position: relative; z-index: -1;
+}
 .notification-bar{
 	@include radius(1.5rem);
 	@include displayFlex;
@@ -159,7 +159,7 @@ body[data-theme="reg"]{
 	color: #cc9933;
 	background-color: rgba(0,0,0,.25);
 	height: 3rem;
-	margin-top: 4.4rem;
+	margin-top: 3rem;
 }
 .notification-bar:before{
 	content: "";
@@ -173,19 +173,24 @@ body[data-theme="reg"]{
 }
 
 .segment-menu{
-	width: 95%; margin: 1rem auto;  background-color: rgba(30,30,30,.8);	height: 5rem; min-width: 300px;
-	.segment-menu-item{ width: 14%;height: 5rem; line-height: 5rem; float: left; text-align: center;}
-	a{color: #5b5b5b; text-decoration: none;  white-space: nowrap;
-	img{display: inline-block; padding: 0 .5rem; vertical-align: middle;}
+   width: 95%; margin: 1rem auto; min-width: 300px; height: 4.4rem;
+    .segment-menu-inner{
+       width: 100%; background-color: rgba(30,30,30,.8); height: 4rem;
+    }
+	.segment-menu-item{ width: 14%;float: left; text-align: center;}
+	a{
+      color: #5b5b5b; text-decoration: none;  white-space: nowrap;font-size: 1.6rem; display: block; line-height: 4rem;
+	  img{display: inline-block; padding: 0 .5rem; vertical-align: middle;}
 	}
 	a:hover{color: gold;}
 	.active{
 	    background-image: url(../img/ui-tab-selected-block.png); 
 	    background-repeat: no-repeat;
-	    background-size: 100% 5.7rem;
+	    background-size: 100% 4.4rem;
 	    background-position: center top;
-	    color: gold;  
-	    height:5.7rem;
+	    color: gold;
+        z-index: -1;
+      height: 4.4rem;
 	    a{color: inherit;}
 	}
 }
@@ -195,8 +200,7 @@ body[data-theme="reg"]{
     -webkit-box-shadow:0 0 16px rgba(0,0,0,.5);  
     -moz-box-shadow:0 0 16px rgba(0,0,0,.5);  
     box-shadow:0 0 16px rgba(0,0,0,.5);  
-    margin: 2rem auto; padding: 1rem;
-    width: 97%;
+    margin: 1rem auto; padding: 1rem;
     height: auto;
 }
 
@@ -218,6 +222,9 @@ body[data-theme="reg"]{
 
 .padding-10{
     padding: 1rem;
+}
+.padding-20{
+  padding: 2rem;
 }
 .margin-top-10{
     margin-top: 1rem;
@@ -265,6 +272,7 @@ body[data-theme="reg"]{
     display: inline-block; overflow: hidden; width:auto; margin: 0 1rem 1rem 1rem; vertical-align: middle;
     .ui-panel-title{
         height:2rem; line-height: 2rem; color: #666; text-overflow: ellipsis; white-space: nowrap;
+
     }
     .ui-panel-content{        
          .number{
@@ -289,17 +297,28 @@ body[data-theme="reg"]{
 }
 
 .ui-panel-win{
-    background-color: #1d1e1e;
-     @include radius(8px); display: block; padding: 1rem;
-     .ui-panel-title{ color: #868686; text-align: center; padding: 1rem 0; height: auto;}
-     ul{ color: #666666; padding: 0 1.6rem; margin: 0; list-style: none;
+    background-color: #1d1e1e;margin: 0 0 1rem 0;
+     @include radius(8px); display: block; padding: 1rem .5rem;
+     .ui-panel-title{
+       color: #868686;padding: 1rem 0; height: auto;
+       @include displayFlex;
+       @include flexAlign('v',center);
+       @include flexAlign('h',justify);
+     }
+     ul{ color: #666666;  margin: 0; list-style: none; padding: 0;
         li{ 
             margin-top: 1rem;
             @include displayFlex;
             @include flexAlign('v',center);
             @include flexAlign('h',justify);
+          .Separator{ padding: 0 4px; display: inline-block; vertical-align: middle;}
         }
      }
+    ul:before{
+      content: ""; display: block; width: 100%; height: 1px; background-color: #868686;
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
 }
 
 .ui-tool-bar{
@@ -1140,17 +1159,17 @@ body[data-theme="reg"]{
 }
 
 #FieldFeedback{border:none; background-color: transparent; color:#999; width: 100%; height: 380px; font-size: 16px;}
+
 #myForm,
 #myForm2{
-  display: block; width: 100%;
-
+  display: block;
   ul{
     padding: 0 0 0 16px; margin: 0;
     li{
       @include displayFlex;
       @include flexAlign('v',center);
       @include flexAlign('h',justify);
-      min-height: 40px;
+      padding:.25rem 0;
       label{
         display: block;
       }
@@ -1168,6 +1187,10 @@ body[data-theme="reg"]{
     }
   }
 
+}
+
+#myForm2{width: 100%;
+  li{min-height: 40px; }
 }
 
 #targetUserList{

@@ -78,11 +78,11 @@
 					  							<div>
 													<div class="btn-group">
 														<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-														<label name="DrawCashType">*</label>
+														<label name="DrawCashType">全部</label>
 														<span class="caret"></span>
 														</button>
 														<ul class="dropdown-menu">
-														<li><a href="javascript:Do_DrawCashTypeChanged(0,'*')">*</a></li>
+														<li><a href="javascript:Do_DrawCashTypeChanged(0,'全部')">全部</a></li>
 														<li role="separator" class="divider"></li>
 														<li><a href="javascript:Do_DrawCashTypeChanged(0,'提现')">提现</a></li>
 														<li role="separator" class="divider"></li>
@@ -101,10 +101,10 @@
 													</div>
 													<div class="btn-group">
 														<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-															<label name="DrawCashType">*</label>
+															<label name="DrawCashType">全部</label>
 															<span class="caret"></span>
 														</button>
-														<ul class="dropdown-menu"><li><a href="javascript:Do_DrawCashTypeChanged(1,'*')">*</a></li>
+														<ul class="dropdown-menu"><li><a href="javascript:Do_DrawCashTypeChanged(1,'全部')">全部</a></li>
 															<li role="separator" class="divider"></li>
 															<li><a href="javascript:Do_DrawCashTypeChanged(1,'正常')">正常</a></li>
 															<li role="separator" class="divider"></li>
@@ -116,11 +116,15 @@
 					  							</div>
 					  							
 					  							<div class="ui-button-group-h">
+													<div class="ui-input">
+														<div class="ui-input-content"><input id="date-picker1" type="text" value="" placeholder="开始时间" /></div>
+														<div class="ui-input-icon ui-icon-calendar"></div>
+													</div>
 					  								<div class="ui-input">
-					  									<div class="ui-input-content"><input id="date-picker" type="text" value="" placeholder="yyyy/mm/dd" /></div>
+					  									<div class="ui-input-content"><input id="date-picker2" type="text" value="" placeholder="结束时间" /></div>
 					  									<div class="ui-input-icon ui-icon-calendar"></div>
 					  								</div>
-					  								<input type="button" class="ui-button-red gold" value="搜索" />
+					  								<input type="button" class="ui-button-red gold" value="搜索" onclick="Do_GetPricesDetail()"/>
 					  							</div>
 					  						</div>
   											

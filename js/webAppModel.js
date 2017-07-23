@@ -230,6 +230,14 @@
     window["NSDataNumberFormat"] = _DataFormat;
 })();
 
+function UpdateBalance(val){
+    $("#PKCoin").text(val);
+    var myself = new NSUser();
+    var _db = myself.getUserToken();
+    _db.PKCoin = val;
+    myself.setUserToken(JSON.stringify(_db));
+}
+
 function checkPhoneFormat(phone){
     if(checkMoblieFormat(phone)){
         return true;
@@ -490,6 +498,7 @@ function Do_GetQuestionList(){
     _request.interFace = "access/GetQuestionList";
     _request.didRequestSucc = function(conn,result){
         console.info(result);
+        layer.closeAll();
         var HTML = "";
         for(var i=0; i<result.Table.length; i++){
          HTML += '<li><a href="javascript:Do_QuestionSelected('+result.Table[i].Id+',&quot;'+result.Table[i].QuestionText+'&quot;)">'+result.Table[i].QuestionText+'</a></li>';
@@ -497,6 +506,7 @@ function Do_GetQuestionList(){
 		 	HTML += '<li role="separator" class="divider"></li>';
 		 }
         }
+        $(".dropdown-menu").empty().html(HTML);
     };
     _request.doRequest();
 }
@@ -508,8 +518,31 @@ function Do_QuestionSelected(QuestionId,QuestionText){
 }
 
 function Ev_Forget(){
+    $(".reg-form-header").on('click',function(e){
+        location.href = "index.html";
+    });
+
 	$("#btn_forget").on("click",function(e){
+
 		var _data = $("#myForm").serializeJSON();
+        if(_data.userName.length ==0){
+            layer.msg('请填写用户名');return;
+        }
+
+        if(_data.questionId.length ==0){
+            layer.msg('请选择密保问题');return;
+        }
+
+        if(_data.answer.length ==0){
+            layer.msg('请输入密保答案');return;
+        }
+
+        if(_data.newPassword.length ==0){
+            layer.msg('请输入新密码');return;
+        }
+        e.stopPropagation();
+        e.preventDefault();
+
 		var _request = MakeHTTPRequest("POST");
 		    _request.interFace = "_access/forgotpassword";
 		    _request.sender = _data;
@@ -547,7 +580,7 @@ function Do_Submit_AddTeamMember(){
         if($("title").text() == "团队成员"){
             Do_GetTeamMemberList();
         }
-
+        $('#myModal').modal('hide');
     };
     _request.doRequest();
 }
@@ -560,6 +593,7 @@ function Do_Submit_Feedback(){
     _request.didRequestSucc = function(conn,result){
         layer.closeAll();
         layer.msg(result.Message);
+        $('#myModal').modal('hide');
     };
     _request.doRequest();
 }
@@ -626,6 +660,7 @@ function Do_Submit_ProfileEdit(){
             }
 
         });
+        $('#myModal').modal('hide');
 
     }
     _request.doRequest();
@@ -687,6 +722,7 @@ function Do_Submit_PasswordReset(){
     _request.didRequestSucc = function(conn,result){
         layer.closeAll();
         layer.msg(result.Message);
+        $('#myModal').modal('hide');
     }
     _request.doRequest();
 }
@@ -719,6 +755,7 @@ function Do_Submit_BankCardEdit(){
         layer.closeAll();
         layer.msg(result.Message);
         Do_BankCardList();
+        $('#myModal').modal('hide');
     };
     _request.doRequest();
     
@@ -741,6 +778,7 @@ function Do_Submit_DrawCashPasswordReset(){
     _request.didRequestSucc = function(conn,result){
         layer.closeAll();
         layer.msg(result.Message);
+        $('#myModal').modal('hide');
     };
     _request.doRequest();
 
@@ -763,7 +801,9 @@ function Do_Submit_DrawCash(){
     _request.didRequestSucc = function(conn,result){
         layer.closeAll();
         layer.msg(result.Message);
-        Do_GetQuota();
+        UpdateBalance(result.Balance);
+        $("#quota").text(result.Balance);
+        $('#myModal').modal('hide');
     };
     _request.doRequest();
 }
@@ -774,6 +814,8 @@ function Do_GetQuota() {
     _request.didRequestSucc = function(conn,result){
         layer.closeAll();
         $("#quota").text(result.Balance);
+        $("#PKCoin").text(result.Balance);
+        UpdateBalance(result.Balance);
     };
     _request.doRequest();
 }
@@ -789,11 +831,30 @@ function Do_Submit_Commission(){
     _request.didRequestSucc = function(conn,result){
         layer.closeAll();
         layer.msg(result.Message);
+        $('#myModal').modal('hide');
     };
     _request.doRequest();
 }
+function Do_CheckCommissionPercent(el){
+    var nubmer = el.value.replace(/[^\d+(\.\d+)?$]/g,'');///^\d+(\.\d+)?$/
+    if(nubmer > 3){
+        el.value = 3;
+    }else{
+        el.value = nubmer;
+    }
+}
+function Do_CheckBetBuyMultiple(el){
+    var nubmer = el.value.replace(/[^\d]/g,'');
+    if(nubmer < 1){
+        el.value = 1;
+    }else{
+        el.value = nubmer;
+    }
 
 
+    var _OrderType = $("#OrderType .active").index();
+    Do_BetDataReload(_OrderType);
+}
 ///通过选号 单选模式
 function Ev_Ball(){
     $(".ball-rows").on("click",".ui-ball",function(e){
@@ -1439,6 +1500,9 @@ function Do_BetOrderAdd(){
     _request.didRequestSucc = function(conn,result){
         layer.closeAll("loading");
         layer.msg("下注成功!");
+        if(result.hasOwnProperty("Balance")){
+            UpdateBalance(result.Balance);
+        }
         Do_BetClear();
     }
     _request.doRequest();
@@ -1523,7 +1587,7 @@ function Do_CommonTurnPage_Request(interFace,sender,jsAction,nilAction){
         if(sender.hasOwnProperty('beginTime') && sender.beginTime != null){
             _beginDate = new Date(parseInt(sender.beginTime));
         }else{
-            _beginDate = new Date(_endDate.getTime() - 7*24*3600*1000);
+            _beginDate = new Date(_endDate.getTime() - 30*24*3600*1000);
         }
         _beginTime = _beginDate.getFullYear() + "-" + (_beginDate.getMonth()+1)+"-" + _beginDate.getDate();
 
@@ -1576,22 +1640,30 @@ function Do_CommonTurnPage_Request(interFace,sender,jsAction,nilAction){
 
 //充值列表
 function Do_GetRechargeRecord(){
-    var _endTime = $(".ui-input-content input").val();
+    var _beginTime = $("#date-picker1").val();
+    var _endTime = $("#date-picker2").val();
+
     if(_endTime.length == 0){
         _endTime = null;
     }
-    Do_CommonTurnPage_Request("AccountChange/GetRechargeList",{endTime:_endTime},function(arr){
-        var _tr = "";
-        for(var i=0; i< arr.length;i++){
-            _tr += '<tr> ';
-            _tr += '<td>微信</td> ';
-            _tr += '<td class="red-font">'+arr[i].Amount+'</td> ';
-            _tr += '<td>'+arr[i].Balance+'</td>';
-            _tr += '<td>'+arr[i].Status+'</td>';
-            _tr += '<td class="gray-font">'+arr[i].EventTime+'</td>';
-            _tr += '</tr>';
-        }
-        $(".goldline-table tbody").html(_tr);
+    if(_beginTime.length == 0){
+        _beginTime = null;
+    }
+    Do_CommonTurnPage_Request("AccountChange/GetRechargeList",
+        {beginTime:_beginTime,endTime:_endTime},
+        function(arr){
+            var _tr = "";
+            for(var i=0; i< arr.length;i++){
+                var timestamp = parseInt(arr[i].EventTime.replace(/[^\d]/g,''));
+                _tr += '<tr> ';
+                _tr += '<td>微信</td> ';
+                _tr += '<td class="red-font">'+arr[i].Amount+'</td> ';
+                _tr += '<td>'+arr[i].Balance+'</td>';
+                _tr += '<td>'+arr[i].Status+'</td>';
+                _tr += '<td class="gray-font">'+NSDateTimeFormat(timestamp)+'</td>';
+                _tr += '</tr>';
+            }
+            $(".goldline-table tbody").html(_tr);
     },function(){
         $(".goldline-table tbody").html("<tr><td colspan='5'>暂无充值记录</td></tr>");
     });
@@ -1599,24 +1671,31 @@ function Do_GetRechargeRecord(){
 
 //提现记录
 function Do_GetDrawCashRecord(){
-    var _endTime = $(".ui-input-content input").val();
+    var _beginTime = $("#date-picker1").val();
+    var _endTime = $("#date-picker2").val();
+
     if(_endTime.length == 0){
         _endTime = null;
     }
-    Do_CommonTurnPage_Request("AccountChange/GetWithdrawList",{endTime:_endTime},function(arr){
-        var _tr = "";
-        for(var i=0; i< arr.length;i++){
-             var timestamp = parseInt(arr[i].EventTime.replace(/[^\d]/g,''));
+    if(_beginTime.length == 0){
+        _beginTime = null;
+    }
+    Do_CommonTurnPage_Request("AccountChange/GetWithdrawList",
+        {beginTime:_beginTime,endTime:_endTime},
+        function(arr){
+            var _tr = "";
+            for(var i=0; i< arr.length;i++){
+                 var timestamp = parseInt(arr[i].EventTime.replace(/[^\d]/g,''));
 
-            _tr += '<tr> ';
-            _tr += '<td>仓位</td> ';
-            _tr += '<td class="red-font">'+arr[i].Amount+'</td> ';
-            _tr += '<td>'+arr[i].Balance+'</td>';
-            _tr += '<td>'+arr[i].Status+'</td>';
-            _tr += '<td class="gray-font">'+NSDateTimeFormat(timestamp)+'</td>';
-            _tr += '</tr>';
-        };
-        $(".goldline-table tbody").html(_tr);
+                _tr += '<tr> ';
+                _tr += '<td>仓位</td> ';
+                _tr += '<td class="red-font">'+arr[i].Amount+'</td> ';
+                _tr += '<td>'+arr[i].Balance+'</td>';
+                _tr += '<td>'+arr[i].Status+'</td>';
+                _tr += '<td class="gray-font">'+NSDateTimeFormat(timestamp)+'</td>';
+                _tr += '</tr>';
+            };
+            $(".goldline-table tbody").html(_tr);
     },function(){
         $(".goldline-table tbody").html("<tr><td colspan='5'>暂无提现记录</td></tr>");
     });
@@ -1624,7 +1703,11 @@ function Do_GetDrawCashRecord(){
 
 //仓位明细
 function Do_GetPricesDetail(){
-    var _endTime = $(".ui-input-content input").val();
+    var _beginTime = $("#date-picker1").val();
+    var _endTime = $("#date-picker2").val();
+    if(_beginTime.length == 0){
+        _beginTime = null;
+    }
     if(_endTime.length == 0){
         _endTime = null;
     }
@@ -1636,12 +1719,13 @@ function Do_GetPricesDetail(){
     var _type = $(".btn-group:first").find('label[name=DrawCashType]').text();
     var _status = $(".btn-group:last").find('label[name=DrawCashType]').text();
 
-    _type = _type=="*"?"":_type;
-    _status = _status == "*"?"":_status;
+    _type = _type=="全部"?"":_type;
+    _status = _status == "全部"?"":_status;
 
     Do_CommonTurnPage_Request("AccountChange/GetAccountChangeList",
         {
             endTime:_endTime,
+            beginTime:_beginTime,
             accountChangeType:_type,
             status:_status
         },
@@ -1753,7 +1837,7 @@ function Do_GetOrderList(){
 
 
         for(var i=0; i<arr.length; i++){
-            WonAmount = arr[i].WonAmount==null?"未中奖":arr[i].WonAmount;
+            WonAmount = arr[i].WonAmount==null?"0.00":arr[i].WonAmount;
             endRaceTime = new Date(parseInt(arr[i].EndRaceTime.replace(/[^\d]/g,'')));
             _betBalls = (arr[i].Place).split(" ");
             _buyBalls = (arr[i].Bet).split(" ");
@@ -1815,6 +1899,7 @@ function Do_GetOrderListWithRaceType(val){
             sender = {won:false};
         }break;
     }
+    $(".goldline-table tbody").html("<tr><td colspan='9'>暂无"+val+"记录</td></tr>");
     Do_GetOrderList(sender);
 }
 
@@ -1831,18 +1916,22 @@ function Do_GetLastRaceWinnerList(){
             var _tr = "";
             for(var i=0; i< _count;i++){
                 var numbers = (result.Table[i].Place).split(' ');
-                _tr +='<li><span>'+ result.Table[i].RaceNumber.slice(9)+'&nbsp;&nbsp;</span>';
+                _tr +='<tr><td>'+ result.Table[i].RaceNumber.slice(9)+'</td><td>';
                 for(var j=0; j<numbers.length; j++){
-
-                    _tr +='<span >'+numbers[j]+'</span>';
+                    if(j == numbers.length-1){
+                        _tr +='<span >'+numbers[j]+'</span>';
+                    }else{
+                        _tr +='<span >'+numbers[j]+',</span>';
+                    }
+                    //_tr +='<span >'+numbers[j]+'</span>';
 
                 }
-                _tr +='</li>';
+                _tr +='</td></tr>';
             };
             $("#LastRaceWinnerList").html(_tr);
         }else{
             if(conn.page == 1){
-                $("#LastRaceWinnerList").html("<li>暂无开奖记录</li>");
+                $("#LastRaceWinnerList").html("<tr><td>暂无开奖记录</td></tr>");
             }
         }
     }
@@ -1850,7 +1939,7 @@ function Do_GetLastRaceWinnerList(){
 
 }
 function Ev_TeamMember(){
-    $(".ui-tool-bar button").on("click",function(e){
+    $(".ui-tool-bar input[type=button]").on("click",function(e){
         var _data = $("#search-form").serializeJSON();
         Do_GetTeamMemberList(_data);
     });
@@ -1885,7 +1974,7 @@ function Do_GetTeamMemberList(){
                 _tr+='<td>'+result.Table[i].CommissionPercentage+'%</td>';
                 _tr+='<td class="gray-font">'+NSDateTimeFormat(parseInt(result.Table[i].LastOnlineTime.replace(/[^\d]/g,'')))+'</td>';
                 _tr+='<td>';
-                _tr+='<button class="ui-button-goldline" data-toggle="modal" data-target="#myModal" data-whatever="Commission">提成点</button>';
+                _tr+='<button class="ui-button-goldline" data-toggle="modal" data-target="#myModal" data-whatever="Commission">返点比例</button>';
                 _tr+='</td>';
                 _tr+='</tr>';
             };
@@ -1991,7 +2080,12 @@ function Ev_Message(){
             layer.msg("请输入关键字");
             return;
         }
-        Do_GetMessageList({keyword:_keyword});
+        var _NewsCategory = GetURLParam("Category");
+        var _sender = {keyword:_keyword};
+        if(_NewsCategory != null){
+            _sender = {keyword:_keyword,newsType:1};
+        }
+        Do_GetMessageList(_sender);
     });
 
     $("#buttons").on('click','button',function(e){
@@ -2115,6 +2209,7 @@ function Ev_TransferAccount(){
         _request.didRequestSucc = function(conn,result){
             layer.closeAll();
             layer.msg(result.Message);
+            UpdateBalance(result.Balance);
         };
         _request.doRequest();
     });
