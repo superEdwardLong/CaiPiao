@@ -744,6 +744,13 @@ body[data-theme="reg"] {
 .ui-ball-10.active {
   background-image: url(../img/ball_selected_10.png); }
 
+#OrderDetailView td {
+  padding: 5px;
+  border: solid 1px #464646; }
+#OrderDetailView tr td:nth-child(odd) {
+  background-color: #232325;
+  font-weight: 500; }
+
 .ui-table {
   width: 100%;
   color: #f49608; }

@@ -1416,7 +1416,7 @@ function Do_GetCurrentRaceInfo(){
         if(_Timer){
             _Race.removeRaceId();
             _Timer.invalidate();
-            $(".ui-panel-timedown > .ui-panel-content").text("00:00:00");
+            $("#NextRaceTimedown").text("00:00:00");
         }
     };
     _Request.didRequestSucc = function(conn,result){
@@ -1428,8 +1428,7 @@ function Do_GetCurrentRaceInfo(){
         result.EndBuyTime = result.EndBuyTime.replace(/[^\d]/g,'');
         result.EndRaceTime = result.EndRaceTime.replace(/[^\d]/g,'');
 
-        var _Race = (new NSRace()).setRaceId(JSON.stringify(result));
-       // _Race.setRaceId(JSON.stringify(result));
+        (new NSRace()).setRaceId(JSON.stringify(result));
 
         $("#LastRaceNo1").text(result.LastRaceNumber);
         var _lastNumbers = result.LastRaceResult.split(" ");
@@ -1439,7 +1438,7 @@ function Do_GetCurrentRaceInfo(){
         }
         $("#LastRaceWinNumbers").empty().html(_lastNumberHTML);
 
-        $(".ui-panel-timedown > .ui-panel-title > b").text(result.RaceNumber.slice(9));
+        $("#NextRaceNumber").text(result.RaceNumber.slice(9));
         Do_TimerCountDown(parseInt(result.EndRaceTime),parseInt(result.EndBuyTime));
     }
     _Request.doRequest();
